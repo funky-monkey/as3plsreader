@@ -24,7 +24,7 @@ package nl.funkymonkey.utils.io.playlist
 	public class PlaylistReader 
 	{
 		// CONSTANTS AND STATICS
-		private static var VERSION		:String = "1.0.0";
+		private static var VERSION		:String = "1.0.1";
 		private static var AUTHOR		:String = "Sidney de Koning";
 		//
 		private var _file				:File;
@@ -100,9 +100,9 @@ package nl.funkymonkey.utils.io.playlist
 				// TODO:  Maybe use regexp to get values out and loop through them?
 				var lengthEntry:String 	= _fileData.substring(lengthPosition + lengthMarkerNeedle.length, secondFilePosition);
 				
-				//AirLogger.log("POSITION OF " +"File"+ i +"="+ "   : " + filePosition);
-				//AirLogger.log("POSITION OF " +"Title"+ i +"="+ "  : " + titlePosition);
-				//AirLogger.log("POSITION OF " +"Length"+ i +"="+ " : " + lengthPosition);
+				AirLogger.log("POSITION OF " +"File"+ i +"="+ "   : " + filePosition);
+				AirLogger.log("POSITION OF " +"Title"+ i +"="+ "  : " + titlePosition);
+				AirLogger.log("POSITION OF " +"Length"+ i +"="+ " : " + lengthPosition);
 				AirLogger.log( "FILE   : " + fileEntry );
 				AirLogger.log( "TITLE  : " + titleEntry );
 				//AirLogger.log( "LENGHT : " + lengthEntry );
