@@ -65,7 +65,11 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 	 * @author Sidney de Koning, sidney@funky-monkey.nl
 	 */
 	public class PLSParser {
-		private static var _parsedFile:Array;						public static function parse( data:String ):Array
+		private static const NEEDLE_NO_OF_ENTRIES:String = "NumberOfEntries=";
+		
+		private static var _parsedFile:Array;
+		
+		public static function parse( data:String ):Array
 		{
 			_parsedFile = new Array();
 			// Handle specific parsing of PLS files
@@ -73,7 +77,19 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 			{	
 				// do the actual parsing, loop through the complete string and search for specific elements
 				// return an Array with file objects or custom PLS Objects
-				Logger.info(data);
+				// Find position of NumberOfEntries
+				var numberOfEntriesNeedle:String = NEEDLE_NO_OF_ENTRIES;
+				var numberOfEntriesPosition:Number = data.search( numberOfEntriesNeedle );
+
+				var numberOfEntriesMarker:String = data.substring( data.length , data.length + numberOfEntriesNeedle.length + 2 );
+				var numberOfEntries:String = numberOfEntriesMarker.substr( numberOfEntriesNeedle.length , numberOfEntriesNeedle.length - 2 );
+				var entriesLength:Number = Number( numberOfEntries );
+
+				for (var i:Number = 1; i < entriesLength + 1; i++ )
+				{
+				}
+
+
 				_parsedFile.push(data);
 			} else {
 				throw new ParseError( "Specified file is not a PLS file, make sure you pass through the correct file");
