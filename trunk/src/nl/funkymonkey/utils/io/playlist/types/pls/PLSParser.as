@@ -98,7 +98,7 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 			return _parsedFile;
 		}
 		
-		
+//		// OLD CODE FROM VERSION 1.0.0
 //		private function parsePLS():void
 //		{
 //			// Handle specific parsing of PLS files
