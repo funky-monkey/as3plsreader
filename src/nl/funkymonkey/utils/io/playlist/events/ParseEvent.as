@@ -1,7 +1,7 @@
 package nl.funkymonkey.utils.io.playlist.events 
 {	import flash.events.Event;	
 	/**	 * @author sidneydekoning	 */	public class ParseEvent extends Event {
-		public static const BEGIN_FILE_PARSE:String = "ParseEvent.BEGIN_FILE_PARSE";		public static const FILE_PARSED:String = "ParseEvent.FILE_PARSED";
+		public static const BEGIN_FILE_PARSE:String = "ParseEvent.BEGIN_FILE_PARSE";		public static const FILE_PARSED:String 		= "ParseEvent.FILE_PARSED";
 		private var _extension:String;
 		private var _parsedFiles:Array;
 

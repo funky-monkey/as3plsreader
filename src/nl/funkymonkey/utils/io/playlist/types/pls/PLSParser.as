@@ -1,5 +1,6 @@
 package nl.funkymonkey.utils.io.playlist.types.pls 
 {
+	import nl.funkymonkey.utils.io.playlist.FileExtensions;	
 	import nl.funkymonkey.firelog.core.Logger;
 	import nl.funkymonkey.utils.io.playlist.FileHeader;
 	import nl.funkymonkey.utils.io.playlist.error.ParseError;	
@@ -68,8 +69,8 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 		{
 			_parsedFile = new Array();
 			// Handle specific parsing of PLS files
-			if (FileHeader.checkHeader( data ) ) {	
-							
+			if (FileHeader.checkHeader( data, FileExtensions.PLS ) ) 
+			{	
 				// do the actual parsing, loop through the complete string and search for specific elements
 				// return an Array with file objects or custom PLS Objects
 				Logger.info(data);

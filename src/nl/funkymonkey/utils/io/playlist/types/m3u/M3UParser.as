@@ -1,5 +1,6 @@
 package nl.funkymonkey.utils.io.playlist.types.m3u 
 {
+	import nl.funkymonkey.utils.io.playlist.FileExtensions;	
 	import nl.funkymonkey.utils.io.playlist.FileHeader;
 	import nl.funkymonkey.utils.io.playlist.error.ParseError;					
 	/**
@@ -16,7 +17,7 @@ package nl.funkymonkey.utils.io.playlist.types.m3u
 		public function parse( data:String ):void
 		{
 			// Handle specific parsing of PLS files
-			if (FileHeader.checkHeader( data ) ) {
+			if (FileHeader.checkHeader( data , FileExtensions.M3U ) ) {
 				
 				// do the actual parsing, loop through the complete string and search for specific elements
 			} else {
