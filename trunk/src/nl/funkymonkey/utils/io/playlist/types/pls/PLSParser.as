@@ -1,8 +1,8 @@
 package nl.funkymonkey.utils.io.playlist.types.pls 
 {
+	import nl.funkymonkey.firelog.core.Logger;
 	import nl.funkymonkey.utils.io.playlist.FileHeader;
-	
-	import flash.filesystem.File;				
+	import nl.funkymonkey.utils.io.playlist.error.ParseError;	
 	/**
 	 * PLSParser -- Parses a PLS file
 	 * 
@@ -63,23 +63,24 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 	 * 		
 	 * @author Sidney de Koning, sidney@funky-monkey.nl
 	 */
-	public class PLSParser 
-	{
-		public static function parse( data:String ):void
+	public class PLSParser {
+		private static var _parsedFile:Array;						public static function parse( data:String ):Array
 		{
+			_parsedFile = new Array();
 			// Handle specific parsing of PLS files
-			if (FileHeader.checkHeader( data ) ) {
-				
+			if (FileHeader.checkHeader( data ) ) {	
+							
 				// do the actual parsing, loop through the complete string and search for specific elements
+				// return an Array with file objects or custom PLS Objects
+				Logger.info(data);
+				_parsedFile.push(data);
+			} else {
+				throw new ParseError( "Specified file is not a PLS file, make sure you pass through the correct file");
 			}
 			
+			return _parsedFile;
 		}
 		
-		public function get result():File
-		{
-			// return File object, so we can pass this through to any program that handles loading of music files
-			return new File();
-		}
 		
 //		private function parsePLS():void
 //		{
@@ -118,12 +119,12 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 //				// TODO:  Maybe use regexp to get values out and loop through them?
 //				var lengthEntry:String 	= _fileData.substring(lengthPosition + lengthMarkerNeedle.length, secondFilePosition);
 //				
-//				trace("POSITION OF " +"File"+ i +"="+ "   : " + filePosition);
-//				trace("POSITION OF " +"Title"+ i +"="+ "  : " + titlePosition);
-//				trace("POSITION OF " +"Length"+ i +"="+ " : " + lengthPosition);
-//				trace( "FILE   : " + fileEntry );
-//				trace( "TITLE  : " + titleEntry );
-//				trace( "LENGHT : " + lengthEntry );
+//				Logger.info("POSITION OF " +"File"+ i +"="+ "   : " + filePosition);
+//				Logger.info("POSITION OF " +"Title"+ i +"="+ "  : " + titlePosition);
+//				Logger.info("POSITION OF " +"Length"+ i +"="+ " : " + lengthPosition);
+//				Logger.info( "FILE   : " + fileEntry );
+//				Logger.info( "TITLE  : " + titleEntry );
+//				Logger.info( "LENGHT : " + lengthEntry );
 //			}
 //			_fileStream.close();
 //		}

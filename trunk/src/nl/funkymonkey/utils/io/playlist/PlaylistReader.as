@@ -1,5 +1,6 @@
 package nl.funkymonkey.utils.io.playlist 
 {
+	import nl.funkymonkey.firelog.core.Logger;	
 	import nl.funkymonkey.utils.io.playlist.events.ParseEvent;
 	import nl.funkymonkey.utils.io.playlist.types.pls.PLSParser;
 	
@@ -45,6 +46,7 @@ package nl.funkymonkey.utils.io.playlist
 	 * @author Sidney de Koning, sidney@funky-monkey.nl
 	 */
 	public class PlaylistReader extends EventDispatcher {
+		
 		// CONSTANTS AND STATICS
 		private static var VERSION	:String = "1.0.1";
 		private static var AUTHOR	:String = "Sidney de Koning";
@@ -59,17 +61,32 @@ package nl.funkymonkey.utils.io.playlist
 		
 		public function set source( value:File ):void
 		{
-			_file = value;			
-			load();			
+			_file = value;
+			
+			switch(extension.toUpperCase())
+			{
+				case "PLS":
+					// Handle loading of PLS files
+					loadPLS();
+					break;
+				case "M3U":
+					// Handle loading of M3U files
+					break;
+				case "XSPF":
+					// Handle loading of XSPF files
+					break;
+			}
+						
 		}
 		
-		public function get result():void
-		{
-			// return File object, so we can pass this through to any program that handles loading of music files
-		}
+//		public function get result():void
+//		{
+//			// return File object, so we can pass this through to any program that handles loading of music files
+//		}
 		
-		private function load():void
+		private function loadPLS():void
 		{
+			// Open stream for string data
 			_fileStream = new FileStream();
 			_fileStream.addEventListener(Event.COMPLETE, 			handleFileReadComplete);
 			_fileStream.addEventListener(Event.OPEN, 				handleFileOpenComplete);
@@ -78,17 +95,11 @@ package nl.funkymonkey.utils.io.playlist
 			
 			_fileStream.openAsync(_file, FileMode.READ);
 		}
+					
 		
-		public function get source():File
-		{
-			return _file;
-		}
-			
-		
-		private function handleFileReadComplete(evt:Event):void
-		{
-			trace("Binary file loaded --> ASYNC");
-			trace(extension.toUpperCase());
+		private function handleFileReadComplete(evt:Event):void {
+			Logger.info( "Binary file loaded --> ASYNC");
+			Logger.info(extension.toUpperCase());
 			
 			doFileParse( );
 		}
@@ -98,7 +109,7 @@ package nl.funkymonkey.utils.io.playlist
 			
 			_fileData = _fileStream.readMultiByte(_fileStream.bytesAvailable, File.systemCharset);
 
-			var fileObj:File;
+			var fileObj:Array;
 			switch(extension.toUpperCase())
 			{
 				case "PLS":
@@ -125,7 +136,7 @@ package nl.funkymonkey.utils.io.playlist
 		}
 		private function handleProgress(evt:ProgressEvent):void
 		{
-			trace(_fileStream.position +" :: "+ _fileStream.bytesAvailable);
+			Logger.info(_fileStream.position +" :: "+ _fileStream.bytesAvailable);
 		}
 		
 		private function handleIOError(ioError:IOErrorEvent):void
