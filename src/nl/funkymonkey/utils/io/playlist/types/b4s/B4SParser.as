@@ -1,7 +1,7 @@
 package nl.funkymonkey.utils.io.playlist.types.b4s 
 {
-	import nl.funkymonkey.utils.io.playlist.FileExtensions;	
-	import nl.funkymonkey.utils.io.playlist.FileHeader;
+	import nl.funkymonkey.utils.io.playlist.types.FileExtensions;	
+	import nl.funkymonkey.utils.io.playlist.types.FileHeader;
 	import nl.funkymonkey.utils.io.playlist.error.ParseError;					
 	/**
 	 * B4SParser -- Parses a B4S file
