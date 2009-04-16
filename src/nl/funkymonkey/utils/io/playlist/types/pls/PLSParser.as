@@ -80,14 +80,14 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 				// Find position of NumberOfEntries
 				var numberOfEntriesNeedle:String = NEEDLE_NO_OF_ENTRIES;
 				var numberOfEntriesPosition:Number = data.search( numberOfEntriesNeedle );
-
 				var numberOfEntriesMarker:String = data.substring( data.length , data.length + numberOfEntriesNeedle.length + 2 );
-				var numberOfEntries:String = numberOfEntriesMarker.substr( numberOfEntriesNeedle.length , numberOfEntriesNeedle.length - 2 );
-				var entriesLength:Number = Number( numberOfEntries );
-
-				for (var i:Number = 1; i < entriesLength + 1; i++ )
-				{
-				}
+				Logger.info(numberOfEntriesPosition);
+//				var numberOfEntries:String = numberOfEntriesMarker.substr( numberOfEntriesNeedle.length , numberOfEntriesNeedle.length - 2 );
+//				var entriesLength:Number = Number( numberOfEntries );
+//
+//				for (var i:Number = 1; i < entriesLength + 1; i++ )
+//				{
+//				}
 
 
 				_parsedFile.push(data);
