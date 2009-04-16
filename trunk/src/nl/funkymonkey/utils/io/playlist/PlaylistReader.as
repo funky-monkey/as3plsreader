@@ -110,9 +110,7 @@ package nl.funkymonkey.utils.io.playlist
 		private function doFileParse():void {
 			
 			_fileData = _fileStream.readMultiByte( _fileStream.bytesAvailable , File.systemCharset );
-			
-			Logger.info( _fileData );
-			
+						
 			var fileObj:Array;
 			switch(extension.toUpperCase( ))
 			{
@@ -126,11 +124,12 @@ package nl.funkymonkey.utils.io.playlist
 					break;
 				case "XSPF":
 					// Handle specific parsing of XSPF files
-					fileObj = PLSParser.parse( _fileData );
+					fileObj = PLSParser.parse( _fileData as XML );
 					break;
 			}
-			trace( fileObj.toString( ) );
-			//dispatchEvent(new ParseEvent(ParseEvent.FILE_PARSED, fileObj, extension));
+			
+			Logger.info( "File parsed, now dispatch a ParseEvent.FILE_PARSED" );
+			dispatchEvent(new ParseEvent(ParseEvent.FILE_PARSED, fileObj, extension));
 		}
 
 		
