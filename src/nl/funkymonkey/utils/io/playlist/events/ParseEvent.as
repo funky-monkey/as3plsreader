@@ -1,6 +1,10 @@
 package nl.funkymonkey.utils.io.playlist.events 
 {	import flash.events.Event;	
-	/**	 * @author sidneydekoning	 */	public class ParseEvent extends Event {
+	/**
+	 * ParseEvent -- event class
+	 * 
+	 * @description -- When dispatched contains the extension of the succesfully parsed file aswell as the data in File Objects 
+	 * 	 * @author sidneydekoning	 */	public class ParseEvent extends Event {
 		public static const BEGIN_FILE_PARSE:String = "ParseEvent.BEGIN_FILE_PARSE";		public static const FILE_PARSED:String 		= "ParseEvent.FILE_PARSED";
 		private var _extension:String;
 		private var _parsedFiles:Array;
@@ -23,8 +27,20 @@ package nl.funkymonkey.utils.io.playlist.events
 			return _extension;
 		}
 
+		/**
+		 * @method clone
+		 * @return Event
+		 */
+		override public function clone() : Event {
+			return new ParseEvent( type , fileData , extension , bubbles , cancelable );
+		}
+
 		
-		override public function clone():Event {
-			return new ParseEvent( type , _parsedFiles , _extension , bubbles , cancelable );
+		/**
+		 * @method toString
+		 * @return String
+		 */
+		override public function toString() : String {
+			return formatToString("ParseEvent", "type", "fileData", "extension", "bubbles", "cancelable", "eventPhase");
 		}
 	}}
