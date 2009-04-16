@@ -1,8 +1,8 @@
 package nl.funkymonkey.utils.io.playlist.types.pls 
 {
-	import nl.funkymonkey.utils.io.playlist.FileExtensions;	
+	import nl.funkymonkey.utils.io.playlist.types.FileExtensions;	
 	import nl.funkymonkey.firelog.core.Logger;
-	import nl.funkymonkey.utils.io.playlist.FileHeader;
+	import nl.funkymonkey.utils.io.playlist.types.FileHeader;
 	import nl.funkymonkey.utils.io.playlist.error.ParseError;	
 	/**
 	 * PLSParser -- Parses a PLS file
