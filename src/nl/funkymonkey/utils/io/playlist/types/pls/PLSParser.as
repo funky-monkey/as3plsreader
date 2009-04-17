@@ -66,7 +66,7 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 	 */
 	public class PLSParser {
 
-		private static const NEEDLE_NO_OF_ENTRIES:String = "NumberOfEntries=";		private static const NEEDLE_FILE:String = "File";		private static const NEEDLE_TITLE:String = "Title";		private static const NEEDLE_LENGTH:String = "Length";		private static const NEEDLE_NEWLINE:String = "\n";
+		private static const NEEDLE_NO_OF_ENTRIES:String 	= "NumberOfEntries=";		private static const NEEDLE_FILE:String 			= "File";		private static const NEEDLE_TITLE:String 			= "Title";		private static const NEEDLE_LENGTH:String 			= "Length";		private static const NEEDLE_NEWLINE:String 			= "\n";
 		private static var _parsedFile:Array;
 		
 		public static function parse( data:String ):Array {

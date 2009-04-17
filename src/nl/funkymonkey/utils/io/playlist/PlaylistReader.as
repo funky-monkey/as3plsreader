@@ -76,13 +76,14 @@ package nl.funkymonkey.utils.io.playlist
 			}
 		}
 				private function loadPLS():void {
+			
 			// Open stream for string data
 			_fileStream = new FileStream( );
 			_fileStream.addEventListener( Event.COMPLETE , handleFileReadComplete );
 			_fileStream.addEventListener( Event.OPEN , handleFileOpenComplete );
 			_fileStream.addEventListener( ProgressEvent.PROGRESS , handleProgress );
 			_fileStream.addEventListener( IOErrorEvent.IO_ERROR , handleIOError );
-			
+			//			
 			_fileStream.openAsync( _file , FileMode.READ );
 		}
 				private function handleFileReadComplete(evt:Event):void {
