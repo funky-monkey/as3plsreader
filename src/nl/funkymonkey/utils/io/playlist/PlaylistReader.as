@@ -3,8 +3,7 @@ package nl.funkymonkey.utils.io.playlist
 	import nl.funkymonkey.firelog.core.Logger;	
 	import nl.funkymonkey.utils.io.playlist.events.ParseEvent;
 	import nl.funkymonkey.utils.io.playlist.types.pls.PLSParser;
-
-	import flash.events.*;
+	import flash.events.*;
 	import flash.filesystem.*;	
 	/**
 	 * PlaylistReader -- Reads in a PLS, M3U or XSPF
@@ -49,23 +48,17 @@ package nl.funkymonkey.utils.io.playlist
 	 * @author Sidney de Koning, sidney@funky-monkey.nl
 	 */
 	public class PlaylistReader extends EventDispatcher {
-
-		// CONSTANTS AND STATICS
+		// CONSTANTS AND STATICS
 		private static var VERSION:String = "1.0.1";
 		private static var AUTHOR:String = "Sidney de Koning";
 		//
 		private var _file:File;
 		private var _fileStream:FileStream;
-		private var _fileData:String;
-
-		
-		//		
+		private var _fileData:String;				//		
 		//
 		function PlaylistReader( ) {			
 		}
-
-		
-		public function set source( value:File ):void {
+				public function set source( value:File ):void {
 			_file = value;
 			
 			switch(extension.toUpperCase( ))
@@ -82,13 +75,7 @@ package nl.funkymonkey.utils.io.playlist
 					break;
 			}
 		}
-
-		
-		//		public function get result():void
-		//		{
-		//			// return File object, so we can pass this through to any program that handles loading of music files
-		//		}
-		private function loadPLS():void {
+				private function loadPLS():void {
 			// Open stream for string data
 			_fileStream = new FileStream( );
 			_fileStream.addEventListener( Event.COMPLETE , handleFileReadComplete );
@@ -98,16 +85,12 @@ package nl.funkymonkey.utils.io.playlist
 			
 			_fileStream.openAsync( _file , FileMode.READ );
 		}
-
-		
-		private function handleFileReadComplete(evt:Event):void {
+				private function handleFileReadComplete(evt:Event):void {
 			Logger.info( "Binary file loaded --> ASYNC" );
 
 			doFileParse( );
 		}
-
-		
-		private function doFileParse():void {
+				private function doFileParse():void {
 			
 			_fileData = _fileStream.readMultiByte( _fileStream.bytesAvailable , File.systemCharset );
 						
@@ -129,41 +112,27 @@ package nl.funkymonkey.utils.io.playlist
 			}
 			
 			Logger.info( "File parsed, now dispatch a ParseEvent.FILE_PARSED" );
-			dispatchEvent(new ParseEvent(ParseEvent.FILE_PARSED, fileObj, extension));
+			dispatchEvent( new ParseEvent( ParseEvent.FILE_PARSED , fileObj , extension ) );
 		}
-
-		
-		private function handleFileOpenComplete(evt:Event):void 
-		{
+				private function handleFileOpenComplete(evt:Event):void {
 		}
-
-		
-		private function handleProgress(evt:ProgressEvent):void 
-		{
+				private function handleProgress(evt:ProgressEvent):void {
 			
 			Logger.info( _fileStream.position + " :: " + _fileStream.bytesAvailable );
 		}
-
-		
-		private function handleIOError(ioError:IOErrorEvent):void {
+				private function handleIOError(ioError:IOErrorEvent):void {
 			// POSSIBLE SCENARIOS:
 			// The file does not exist; you do not have adequate permissions to open the file; 
 			// you are opening a file for read access, and you do not have read permissions; 
 			// or you are opening a file for write access, and you do not have write permissions.
 		}
-
-		
-		public function get extension():String {
+				public function get extension():String {
 			return _file.extension;			
 		}
-
-		
-		public function get version():String {
+				public function get version():String {
 			return VERSION;
 		}
-
-		
-		public function get author():String {
+				public function get author():String {
 			return AUTHOR;
 		}
 	}
