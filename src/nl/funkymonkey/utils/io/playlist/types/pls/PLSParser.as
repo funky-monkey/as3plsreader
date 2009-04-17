@@ -1,9 +1,9 @@
 package nl.funkymonkey.utils.io.playlist.types.pls 
 {
-	import nl.funkymonkey.utils.io.playlist.types.FileExtensions;	
 	import nl.funkymonkey.firelog.core.Logger;
-	import nl.funkymonkey.utils.io.playlist.types.FileHeader;
-	import nl.funkymonkey.utils.io.playlist.error.ParseError;	
+	import nl.funkymonkey.utils.io.playlist.error.ParseError;
+	import nl.funkymonkey.utils.io.playlist.types.FileExtensions;
+	import nl.funkymonkey.utils.io.playlist.types.FileHeader;		
 	/**
 	 * PLSParser -- Parses a PLS file
 	 * 
@@ -87,25 +87,31 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 					
 					for (var i:Number = 1; i < entriesLength +1 ; i++ ) {
 						
-						var fileMarkerNeedle:String 	= NEEDLE_FILE + i + "=";
-						var titleMarkerNeedle:String 	= NEEDLE_TITLE + i + "=";
-						var lengthMarkerNeedle:String 	= NEEDLE_LENGTH + i + "=";
+						var fileNeedle:String 	= NEEDLE_FILE + i + "=";
+						var titleNeedle:String 	= NEEDLE_TITLE + i + "=";
+						var lengthNeedle:String = NEEDLE_LENGTH + i + "=";
 						
-						var filePosition:Number = data.search( fileMarkerNeedle );				
-						var secondFilePosition:Number = data.search( fileMarkerNeedle );
-						var titlePosition:Number = data.search( titleMarkerNeedle );
-						var lengthPosition:Number = data.search( lengthMarkerNeedle );
+						var filePosition:Number 		= data.search( fileNeedle );				
+						var secondFilePosition:Number 	= data.search( fileNeedle );
+						var titlePosition:Number 		= data.search( titleNeedle );
+						var lengthPosition:Number 		= data.search( lengthNeedle );
 				
-						var fileEntry:String = data.substring( filePosition + fileMarkerNeedle.length , titlePosition-1 );
-						var titleEntry:String = data.substring( titlePosition + titleMarkerNeedle.length , lengthPosition-1 );
-						var lengthEntry:String = data.substring( lengthPosition + lengthMarkerNeedle.length , secondFilePosition );
+						var fileEntry:String = data.substring( filePosition + fileNeedle.length , titlePosition-1 );
+						var titleEntry:String = data.substring( titlePosition + titleNeedle.length , lengthPosition-1 );
 						
-						Logger.info( NEEDLE_FILE 	+ i + "=" + fileEntry );
-						Logger.info( NEEDLE_TITLE 	+ i + "=" + titleEntry );
-						Logger.info( NEEDLE_LENGTH 	+ i + "=" + lengthEntry );
+						// FIXME -- Somehow i cant get the value of Length= out
+						var lengthEntry:String = data.substring( lengthPosition + lengthNeedle.length , secondFilePosition -1);
+						
+						//Logger.info( NEEDLE_FILE 	+ i + "=" + fileEntry );
+						//Logger.info( NEEDLE_TITLE 	+ i + "=" + titleEntry );
+						//Logger.info( NEEDLE_LENGTH 	+ i + "=" + lengthEntry );
+						
+						var plsFile: PLSFile = new PLSFile();
+						plsFile.title = titleEntry;						plsFile.file = fileEntry;						plsFile.length = int(lengthEntry);
+						
+						_parsedFile.push( plsFile );						
 					}
 				}
-				_parsedFile.push( data );
 			} 
 			else 
 			{
