@@ -14,16 +14,11 @@ package nl.funkymonkey.utils.io.playlist
 	 * 		- Add support for B4S  -- WinAmp3 XML Based playlist format
 	 * 		- Add support for M3U  -- WinAmp3 XML Based playlist format
 	 * 		- Add support for XSPF -- WinAmp3 XML Based playlist format
-	 * 		- Maybee nice to return the user with a custom PLSFile Object containing file's size, type, name, location, 
-	 * 		extension and duration (PLS extends File)
-	 * 		- Check during parsing if loaded file is truly of input type -- else throw error
 	 * 
 	 * NOTES:
 	 * 
 	 * If you want to use the FireLog Logger, go to http://www.funky-monkey.nl/blog/
 	 * 
-	 * 
-	 * FIXME:
 	 * 
 	 * USE:
 	 * 
@@ -31,30 +26,42 @@ package nl.funkymonkey.utils.io.playlist
 	 * import nl.funkymonkey.utils.io.playlist.PlaylistReader;
 	 * import flash.filesystem.*;
 	 * 
-	 * // make a reference to a file on the desktop
-	 * var plsFile:File = File.desktopDirectory.resolvePath("default.pls");
+	 *	// make a reference to a file on the desktop
+	 *	var plsFile:File = File.desktopDirectory.resolvePath( "default.pls" );
+	 *	//
+	 *	Logger.info("====== PLS# " + plsFile+ " ======");
+	 *	// instanciate new PlayListReader object with file reference
+	 *	var pls:PlaylistReader = new PlaylistReader( );
+	 *	pls.addEventListener( ParseEvent.FILE_PARSED , parsedPLS, false, 0, true );
+	 *	pls.source = plsFile;
 	 * 
-	 * // instanciate new PlayListReader object with file reference
-	 * var pls:PlaylistReader = new PlaylistReader();
-	 * pls.addEventListener(ParseEvent.FILE_PARSED, parsedPLS, false, 0, true);
-	 * pls.source = plsFile;
 	 * 
-	 * private function parsedPLS( evt:ParseEvent):void {
-	 * 		var plsFile:PLSFile = evt.target.fileData as PLSFile.
-	 * 		
-	 * }
+	 * function parsedPLS( evt:ParseEvent ):void { 
+	 * 
+	 *	var plsFile:Array = evt.fileData as Array;
+	 *	Logger.info("file with extension " +evt.extension.toString()+ " succesfully parsed.");
+	 *	Logger.info("====== PLS FILE   " +plsFile.toString()+ " ======");
+	 *	
+	 *		for (var i:int = 0; i< plsFile.length; ++i) {
+	 *		
+	 *			Logger.info("====== PLS Item no# " + (i +1) + " of "+ plsFile.length + " ======");
+	 *			Logger.info("** file  : " + plsFile[i].file);
+	 *			Logger.info("** title : " + plsFile[i].title);
+	 *			Logger.info("** length: " + plsFile[i].length);
+	 *		}
+	 *	}
 	 * 
 	 * 		
 	 * @author Sidney de Koning, sidney@funky-monkey.nl
 	 */
 	public class PlaylistReader extends EventDispatcher {
 		// CONSTANTS AND STATICS
-		private static var VERSION:String = "1.0.1";
+		private static var VERSION:String = "1.0.2";
 		private static var AUTHOR:String = "Sidney de Koning";
 		//
 		private var _file:File;
 		private var _fileStream:FileStream;
-		private var _fileData:String;				//		
+		private var _fileData:String;	
 		//
 		function PlaylistReader( ) {			
 		}
