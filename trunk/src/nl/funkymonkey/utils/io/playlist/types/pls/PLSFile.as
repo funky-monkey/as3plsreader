@@ -1,9 +1,8 @@
 package nl.funkymonkey.utils.io.playlist.types.pls 
-{	import flash.filesystem.File;
-	/**
+{	/**
 	 * 
 	 * PLS File - Same properties as one entry in a PLS playlist
-	 * 	 * @author sidneydekoning	 */	public class PLSFile extends File {
+	 * 	 * @author sidneydekoning	 */	public class PLSFile {
 		private var _url:String;		private var _length:int;
 		private var _title:String;
 
@@ -11,8 +10,7 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 		public function PLSFile() {		}
 
 		
-		override public function set url(pValue:String):void {
-			super.url = pValue;
+		public function set file(pValue:String):void {
 			_url = pValue;
 		}
 
@@ -27,7 +25,7 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 		}
 
 		
-		override public function get url():String {
+		public function get file():String {
 			return _url;
 		}
 
