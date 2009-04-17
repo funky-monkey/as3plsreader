@@ -65,85 +65,54 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 	 * @author Sidney de Koning, sidney@funky-monkey.nl
 	 */
 	public class PLSParser {
-		private static const NEEDLE_NO_OF_ENTRIES:String 	= "NumberOfEntries=";		private static const NEEDLE_FILE:String 			= "File=";		private static const NEEDLE_TITLE:String 			= "Title=";		private static const NEEDLE_LENGTH:String 			= "Length=";
-		
+
+		private static const NEEDLE_NO_OF_ENTRIES:String = "NumberOfEntries=";		private static const NEEDLE_FILE:String = "File";		private static const NEEDLE_TITLE:String = "Title";		private static const NEEDLE_LENGTH:String = "Length";		private static const NEEDLE_NEWLINE:String = "\n";
 		private static var _parsedFile:Array;
 		
-		public static function parse( data:String ):Array
-		{
-			_parsedFile = new Array();
+		public static function parse( data:String ):Array {
+			
+			_parsedFile = new Array( );
 			// Handle specific parsing of PLS files
-			if (FileHeader.checkHeader( data, FileExtensions.PLS ) ) 
+			if (FileHeader.checkHeader( data , FileExtensions.PLS ) ) 
 			{	
 				// do the actual parsing, loop through the complete string and search for specific elements
-				// return an Array with file objects or custom PLS Objects
-				// Find position of NumberOfEntries
-				var numberOfEntriesNeedle:String = NEEDLE_NO_OF_ENTRIES;
-				var numberOfEntriesPosition:Number = data.search( numberOfEntriesNeedle );
-				var numberOfEntriesMarker:String = data.substring( data.length , data.length + numberOfEntriesNeedle.length + 2 );
-				Logger.info(numberOfEntriesPosition);
-//				var numberOfEntries:String = numberOfEntriesMarker.substr( numberOfEntriesNeedle.length , numberOfEntriesNeedle.length - 2 );
-//				var entriesLength:Number = Number( numberOfEntries );
-//
-//				for (var i:Number = 1; i < entriesLength + 1; i++ )
-//				{
-//				}
-
-
-				_parsedFile.push(data);
-			} else {
-				throw new ParseError( "Specified file is not a PLS file, make sure you pass through the correct file");
+				// return an Array with file objects or custom PLS Objects				
+				var noOfEntriesPos:int = data.search( NEEDLE_NO_OF_ENTRIES );
+				
+				if(noOfEntriesPos != -1) 
+				{
+					var noOfEntriesMarker:int = data.indexOf( NEEDLE_NEWLINE , noOfEntriesPos );
+					
+					var noOfEntries:String = data.substring( noOfEntriesPos + NEEDLE_NO_OF_ENTRIES.length , noOfEntriesMarker );					var entriesLength:int = int( noOfEntries );
+					
+					for (var i:Number = 1; i < entriesLength +1 ; i++ ) {
+						
+						var fileMarkerNeedle:String 	= NEEDLE_FILE + i + "=";
+						var titleMarkerNeedle:String 	= NEEDLE_TITLE + i + "=";
+						var lengthMarkerNeedle:String 	= NEEDLE_LENGTH + i + "=";
+						
+						var filePosition:Number = data.search( fileMarkerNeedle );				
+						var secondFilePosition:Number = data.search( fileMarkerNeedle );
+						var titlePosition:Number = data.search( titleMarkerNeedle );
+						var lengthPosition:Number = data.search( lengthMarkerNeedle );
+				
+						var fileEntry:String = data.substring( filePosition + fileMarkerNeedle.length , titlePosition-1 );
+						var titleEntry:String = data.substring( titlePosition + titleMarkerNeedle.length , lengthPosition-1 );
+						var lengthEntry:String = data.substring( lengthPosition + lengthMarkerNeedle.length , secondFilePosition );
+						
+						Logger.info( NEEDLE_FILE 	+ i + "=" + fileEntry );
+						Logger.info( NEEDLE_TITLE 	+ i + "=" + titleEntry );
+						Logger.info( NEEDLE_LENGTH 	+ i + "=" + lengthEntry );
+					}
+				}
+				_parsedFile.push( data );
+			} 
+			else 
+			{
+				throw new ParseError( "Specified file is not a PLS file, make sure you pass through the correct file" );
 			}
 			
 			return _parsedFile;
 		}
-		
-//		// OLD CODE FROM VERSION 1.0.0
-//		private function parsePLS():void
-//		{
-//			// Handle specific parsing of PLS files
-//			// Find position of NumberOfEntries
-//			var numberOfEntriesNeedle:String = "NumberOfEntries=";
-//			var numberOfEntriesPosition:Number = _fileData.search(numberOfEntriesNeedle);
-//			_fileStream.position = numberOfEntriesPosition;
-//
-//			var numberOfEntriesMarker:String 	= _fileData.substring(_fileStream.position, _fileStream.position + numberOfEntriesNeedle.length + 2);
-//			var numberOfEntries:String 			= numberOfEntriesMarker.substr(numberOfEntriesNeedle.length, numberOfEntriesNeedle.length-2);
-//			var numberOfE:Number 				= Number(numberOfEntries);
-//			
-//			for (var i:Number = 1; i < numberOfE + 1; i++ )
-//			{
-//				// loop numberOfE times through file, search for first occurence of:
-//				// "File" + i +"=" until loop hits "Title" (2 chars before)
-//				// "Title" + i +"=" until loop hits "Length" (2 chars before)
-//				// "Length" + i +"="
-//				// everytime update the position property
-//				_fileStream.position = 0;
-//				//
-//				var fileMarkerNeedle:String 		= "File" 	+ i +"=";
-//				var secondFileMarkerNeedle:String 	= "File" 	+ i+1 +"=";
-//				var titleMarkerNeedle:String 		= "Title" 	+ i +"=";
-//				var lengthMarkerNeedle:String 		= "Length" 	+ i +"=";
-//				
-//				var filePosition:Number 		= _fileData.search(fileMarkerNeedle);				
-//				var secondFilePosition:Number 	= _fileData.search(fileMarkerNeedle);
-//				var titlePosition:Number 		= _fileData.search(titleMarkerNeedle);
-//				var lengthPosition:Number 		= _fileData.search(lengthMarkerNeedle);
-//				
-//				var fileEntry:String 	= _fileData.substring(filePosition + fileMarkerNeedle.length, titlePosition-2);
-//				var titleEntry:String 	= _fileData.substring(titlePosition + titleMarkerNeedle.length, lengthPosition - 2);
-//				// FIXME: Fix the final iteration of this loop for the length property we want to get out
-//				// TODO:  Maybe use regexp to get values out and loop through them?
-//				var lengthEntry:String 	= _fileData.substring(lengthPosition + lengthMarkerNeedle.length, secondFilePosition);
-//				
-//				Logger.info("POSITION OF " +"File"+ i +"="+ "   : " + filePosition);
-//				Logger.info("POSITION OF " +"Title"+ i +"="+ "  : " + titlePosition);
-//				Logger.info("POSITION OF " +"Length"+ i +"="+ " : " + lengthPosition);
-//				Logger.info( "FILE   : " + fileEntry );
-//				Logger.info( "TITLE  : " + titleEntry );
-//				Logger.info( "LENGHT : " + lengthEntry );
-//			}
-//			_fileStream.close();
-//		}
 	}
 }
