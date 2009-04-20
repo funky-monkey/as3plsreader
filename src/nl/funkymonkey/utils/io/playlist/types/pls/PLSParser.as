@@ -83,10 +83,6 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 						// FIXME -- Somehow cant get the value of Length= out
 						var lengthEntry:String = data.substring( lengthPosition + lengthNeedle.length , secondFilePosition -1);
 						
-						//Logger.info( NEEDLE_FILE 	+ i + "=" + fileEntry );
-						//Logger.info( NEEDLE_TITLE 	+ i + "=" + titleEntry );
-						//Logger.info( NEEDLE_LENGTH 	+ i + "=" + lengthEntry );
-						
 						var plsFile: PLSFile = new PLSFile();
 						plsFile.title = titleEntry;						plsFile.file = fileEntry;						plsFile.length = int(lengthEntry);
 						
