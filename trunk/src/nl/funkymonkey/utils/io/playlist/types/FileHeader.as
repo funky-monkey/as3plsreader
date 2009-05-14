@@ -11,7 +11,13 @@ package nl.funkymonkey.utils.io.playlist.types
 		// CONSTANTS AND STATICS
 		public static const PLS_FILE:String = "[playlist]";		public static const B4S_FILE:String = "[b4s]";		public static const M3U_FILE:String = "[m3u]";
 		//
-		
+		/**
+		 * @method checkHeader
+		 * @param head checks the
+		 * @param extension
+		 * @description Does aditional check to see if File is indeed a File by checking its header
+		 * @return true if check is passed and file is indeed specified file
+		 */
 		public static function checkHeader( head:String, extension:String ):Boolean {
 			
 			var headerCheck:Boolean = false;

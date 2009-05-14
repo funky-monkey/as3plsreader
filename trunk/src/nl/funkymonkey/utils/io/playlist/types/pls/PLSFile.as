@@ -7,7 +7,8 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 		private var _title:String;
 
 		
-		public function PLSFile() {		}
+		public function PLSFile() {
+			// does notting		}
 
 		
 		public function set file(pValue:String):void {
