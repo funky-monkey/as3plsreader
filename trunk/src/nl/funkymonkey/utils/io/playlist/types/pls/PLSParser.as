@@ -7,36 +7,12 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 	 * PLSParser -- Parses a PLS file
 	 * 
 	 * @description: Parses a PLS file and returns an PLSFile Object
+	 * @mimetype: 	audio/x-mpegurl
 	 * 
-	 * NOTES:
-	 * "[playlist]": 
-	 * Signifies that this is a PLS playlist. This is case sensitive.
+	 * More information on the M3U format
+	 * @see http://en.wikipedia.org/wiki/PLS_(file_format)
+	 * @see http://forums.winamp.com/showthread.php?threadid=65772
 	 * 
-	 * "File#=":
-	 * Location of the file in any of the formats described above. This is also case sensitive. 
-	 * Also the # sign after "File" signifies what file number it is. 
-	 * The first file in the playlist is "File1", the second is "File2" and so on.
-	 * 
-	 * "Title#=": 
-	 * Title to display. This is usually the title read from the file name or ID3 tags. 
-	 * Like the other fields, this is case sensitive. This also can be the name of a stream. 
-	 * Like "File#" the pound sign (#) is replaced by the entry number that is in the PLS playlist.
-	 * 
-	 * "Length#=": 
-	 * Length in seconds, this is also case sensitive. On the last entry there is a negative one, 
-	 * this is usually seen on streams, it tells the program to ignore the time entry. 
-	 * Like "File#" the pound sign (#) is replaced by the entry number that is in the PLS playlist.
-	 * 
-	 * "NumberOfEntries=#": 
-	 * The total number of entries in the playlist. 
-	 * This should match the last number on the "File#", "Title#", and "Length#" fields. 
-	 * Also case sensitive.
-	 * 
-	 * "Version=2": 
-	 * This required entry near the bottom tells the player what format the PLS is in. 
-	 * Older versions of the PLS playlist format did not include this. Like everything else, 
-	 * it is case sensitive.
-	 *   
 	 * FIXME:
 	 * 
 	 * -- Somehow cant get the value of LengthN= out

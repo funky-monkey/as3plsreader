@@ -9,7 +9,7 @@ package nl.funkymonkey.utils.io.playlist.types
 	public class FileHeader 
 	{
 		// CONSTANTS AND STATICS
-		public static const PLS_FILE:String = "[playlist]";		public static const B4S_FILE:String = "[b4s]";		public static const M3U_FILE:String = "[m3u]";
+		public static const PLS_FILE:String = "[playlist]";		public static const B4S_FILE:String = "[b4s]";		public static const M3U_FILE:String = "#EXTM3U";
 		//
 		/**
 		 * @method checkHeader
