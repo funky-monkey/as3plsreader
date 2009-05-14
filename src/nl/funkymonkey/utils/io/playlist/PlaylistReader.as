@@ -1,11 +1,11 @@
 package nl.funkymonkey.utils.io.playlist 
 {
-	import nl.funkymonkey.firelog.core.Logger;	
+	import nl.funkymonkey.firelog.core.Logger;
 	import nl.funkymonkey.utils.io.playlist.events.ParseEvent;
 	import nl.funkymonkey.utils.io.playlist.types.pls.PLSParser;
-	import flash.events.*;
-	import flash.filesystem.*;	
-	/**
+	
+	import flash.events.*;
+	import flash.filesystem.*;			/**
 	 * PlaylistReader -- Reads in a PLS, M3U or XSPF
 	 * 
 	 * @description: Reads in playlist formats async manner
@@ -20,39 +20,13 @@ package nl.funkymonkey.utils.io.playlist
 	 * If you want to use the FireLog Logger, go to http://www.funky-monkey.nl/blog/
 	 * 
 	 * 
-	 * USE:
-	 * 
-	 * // import appropriate files
-	 * import nl.funkymonkey.utils.io.playlist.PlaylistReader;
-	 * import flash.filesystem.*;
-	 * 
-	 *	// make a reference to a file on the desktop
-	 *	var plsFile:File = File.desktopDirectory.resolvePath( "default.pls" );
-	 *	//
-	 *	Logger.info("====== PLS# " + plsFile+ " ======");
-	 *	// instanciate new PlayListReader object with file reference
-	 *	var pls:PlaylistReader = new PlaylistReader( );
-	 *	pls.addEventListener( ParseEvent.FILE_PARSED , parsedPLS, false, 0, true );
-	 *	pls.source = plsFile;
-	 * 
-	 * 
-	 * function parsedPLS( evt:ParseEvent ):void { 
-	 * 
-	 *	var plsFile:Array = evt.fileData as Array;
-	 *	Logger.info("file with extension " +evt.extension.toString()+ " succesfully parsed.");
-	 *	Logger.info("====== PLS FILE   " +plsFile.toString()+ " ======");
-	 *	
-	 *		for (var i:int = 0; i< plsFile.length; ++i) {
-	 *		
-	 *			Logger.info("====== PLS Item no# " + (i +1) + " of "+ plsFile.length + " ======");
-	 *			Logger.info("** file  : " + plsFile[i].file);
-	 *			Logger.info("** title : " + plsFile[i].title);
-	 *			Logger.info("** length: " + plsFile[i].length);
-	 *		}
-	 *	}
+	 * @see For complete documentation either go to http://code.gogle.com/p/as3plsreader/ 
+	 * or checkout the source package and test package
 	 * 
 	 * 		
-	 * @author Sidney de Koning, sidney@funky-monkey.nl
+	 * @author Sidney de Koning 
+	 * @email sidney[at]funky-monkey.nl
+	 * @version 1.0.2
 	 */
 	public class PlaylistReader extends EventDispatcher {
 		// CONSTANTS AND STATICS
@@ -65,7 +39,11 @@ package nl.funkymonkey.utils.io.playlist
 		//
 		function PlaylistReader( ) {			
 		}
-				public function set source( value:File ):void {
+		/**
+		 * @method source
+		 * @description sets a File object to be parsed
+		 * @param value:* - the location of the File object
+		 */		public function set source( value:File ):void {
 			_file = value;
 			
 			switch(extension.toUpperCase( ))
@@ -134,13 +112,22 @@ package nl.funkymonkey.utils.io.playlist
 			// you are opening a file for read access, and you do not have read permissions; 
 			// or you are opening a file for write access, and you do not have write permissions.
 		}
-				public function get extension():String {
+		/**
+		 * @method extension
+		 * @description returns the extension of the File object
+		 */		public function get extension():String {
 			return _file.extension;			
 		}
-				public function get version():String {
+		/**
+		 * @method version
+		 * @description returns the current version
+		 */		public function get version():String {
 			return VERSION;
 		}
-				public function get author():String {
+		/**
+		 * @method author
+		 * @description returns the author
+		 */		public function get author():String {
 			return AUTHOR;
 		}
 	}
