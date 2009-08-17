@@ -29,13 +29,13 @@ package nl.funkymonkey.utils.io.playlist.types
 						headerCheck = true;
 					}
 					break;
-				case FileExtensions.B4S:
-					if(head.indexOf(B4S_FILE) != -1) {
+				case FileExtensions.M3U:
+					if(head.indexOf(M3U_FILE) != -1) {
 						headerCheck = true;
 					}
 					break;
-				case FileExtensions.M3U:
-					if(head.indexOf(M3U_FILE) != -1) {
+				case FileExtensions.B4S:
+					if(head.indexOf(B4S_FILE) != -1) {
 						headerCheck = true;
 					}
 					break;

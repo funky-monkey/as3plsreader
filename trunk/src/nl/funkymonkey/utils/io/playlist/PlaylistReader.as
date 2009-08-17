@@ -1,36 +1,38 @@
-package nl.funkymonkey.utils.io.playlist 
-{
+package nl.funkymonkey.utils.io.playlist {
+	
 	import nl.funkymonkey.firelog.core.Logger;
 	import nl.funkymonkey.utils.io.playlist.events.ParseEvent;
+	import nl.funkymonkey.utils.io.playlist.types.m3u.M3UParser;
 	import nl.funkymonkey.utils.io.playlist.types.pls.PLSParser;
-	
+	//
+	import flash.filesystem.File;
+	import flash.filesystem.FileMode;
+	import flash.filesystem.FileStream;
+
 	import flash.events.*;
-	import flash.filesystem.*;			/**
+
+	/**
 	 * PlaylistReader -- Reads in a PLS, M3U or XSPF
 	 * 
 	 * @description: Reads in playlist formats async manner
 	 * 
 	 * TODO: 
 	 * 		- Add support for B4S  -- WinAmp3 XML Based playlist format
-	 * 		- Add support for M3U  -- WinAmp3 XML Based playlist format
 	 * 		- Add support for XSPF -- WinAmp3 XML Based playlist format
 	 * 
 	 * NOTES:
 	 * 
 	 * If you want to use the FireLog Logger, go to http://www.funky-monkey.nl/blog/
 	 * 
-	 * 
 	 * @see For complete documentation either go to http://code.gogle.com/p/as3plsreader/ 
 	 * or checkout the source package and test package
 	 * 
-	 * 		
-	 * @author Sidney de Koning 
-	 * @email sidney[at]funky-monkey.nl
-	 * @version 1.0.2
+	 * @author Sidney de Koning, sidney@funky-monkey.nl
+	 * @version 1.0.5
 	 */
 	public class PlaylistReader extends EventDispatcher {
 		// CONSTANTS AND STATICS
-		private static var VERSION:String = "1.0.2";
+		private static var VERSION:String = "1.0.5";
 		private static var AUTHOR:String = "Sidney de Koning";
 		//
 		private var _file:File;
@@ -50,9 +52,10 @@ package nl.funkymonkey.utils.io.playlist
 			{
 				case "PLS":
 					// Handle loading of PLS files
-					loadPLS( );
+					loadPlaylist( );
 					break;
 				case "M3U":
+					loadPlaylist();
 					// Handle loading of M3U files
 					break;
 				case "XSPF":
@@ -60,7 +63,7 @@ package nl.funkymonkey.utils.io.playlist
 					break;
 			}
 		}
-				private function loadPLS():void {
+		private function loadPlaylist():void {
 			
 			// Open stream for string data
 			_fileStream = new FileStream( );
@@ -85,11 +88,11 @@ package nl.funkymonkey.utils.io.playlist
 			{
 				case "PLS":
 					// Handle specific parsing of PLS files
-					fileObj = PLSParser.parse( _fileData );
+					fileObj = PLSParser.parse( _fileData.toString() );
 					break;
 				case "M3U":
 					// Handle specific parsing of M3U files
-					fileObj = PLSParser.parse( _fileData );
+					fileObj = M3UParser.parse( _fileData.toString() );
 					break;
 				case "XSPF":
 					// Handle specific parsing of XSPF files

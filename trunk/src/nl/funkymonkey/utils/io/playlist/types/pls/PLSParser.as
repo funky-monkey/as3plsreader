@@ -1,8 +1,8 @@
-package nl.funkymonkey.utils.io.playlist.types.pls 
-{
+package nl.funkymonkey.utils.io.playlist.types.pls {
 	import nl.funkymonkey.utils.io.playlist.error.ParseError;
 	import nl.funkymonkey.utils.io.playlist.types.FileExtensions;
-	import nl.funkymonkey.utils.io.playlist.types.FileHeader;	
+	import nl.funkymonkey.utils.io.playlist.types.FileHeader;
+
 	/**
 	 * PLSParser -- Parses a PLS file
 	 * 
@@ -23,16 +23,16 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 	 */
 	public class PLSParser {
 
-		private static const NEEDLE_NO_OF_ENTRIES:String 	= "NumberOfEntries=";		private static const NEEDLE_FILE:String 			= "File";		private static const NEEDLE_TITLE:String 			= "Title";		private static const NEEDLE_LENGTH:String 			= "Length";		private static const NEEDLE_NEWLINE:String 			= "\n";
+		private static const NEEDLE_NO_OF_ENTRIES:String 	= "NumberOfEntries=";		private static const NEEDLE_FILE:String 				= "File";		private static const NEEDLE_TITLE:String 			= "Title";		private static const NEEDLE_LENGTH:String 			= "Length";		private static const NEEDLE_NEWLINE:String 			= "\n";
 		//
 		private static var _parsedFile:Array;
 		
 		public static function parse( data:String ):Array {
 			
-			_parsedFile = new Array( );
 
 			if (FileHeader.checkHeader( data , FileExtensions.PLS ) ) 
 			{	
+				_parsedFile = new Array( );
 				// do the actual parsing, loop through the complete string and search for specific elements
 				// return an Array with file objects or custom PLS Objects				
 				var noOfEntriesPos:int = data.search( NEEDLE_NO_OF_ENTRIES );
@@ -45,9 +45,9 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 					
 					for (var i:Number = 1; i < entriesLength +1 ; i++ ) {
 						
-						var fileNeedle:String 	= NEEDLE_FILE + i + "=";
+						var fileNeedle:String 		= NEEDLE_FILE + i + "=";
 						var titleNeedle:String 	= NEEDLE_TITLE + i + "=";
-						var lengthNeedle:String = NEEDLE_LENGTH + i + "=";
+						var lengthNeedle:String 	= NEEDLE_LENGTH + i + "=";
 						
 						var filePosition:Number 		= data.search( fileNeedle );				
 						var secondFilePosition:Number 	= data.search( fileNeedle );
@@ -66,6 +66,7 @@ package nl.funkymonkey.utils.io.playlist.types.pls
 						_parsedFile.push( plsFile );						
 					}
 				}
+				
 			} 
 			else 
 			{
