@@ -16,8 +16,6 @@ package nl.funkymonkey.utils.io.playlist.types.pls {
 	 * FIXME:
 	 * 
 	 * -- Somehow cant get the value of LengthN= out
-	 * 
-	 * 
 	 * 		
 	 * @author Sidney de Koning, sidney@funky-monkey.nl
 	 */
