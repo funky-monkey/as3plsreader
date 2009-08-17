@@ -6,9 +6,9 @@ package nl.funkymonkey.utils.io.playlist.types.b4s
 	/**
 	 * B4SParser -- Parses a B4S file
 	 * 
-	 * @description: Parses a B4S file and returns an PLSFile Object
+	 * @description: Parses a B4S file and returns an B4SFile Object
 	 * 
-	 * More information on the M3U format
+	 * More information on the B4S format
 	 * @see http://gonze.com/playlists/playlist-format-survey.html#B4S
 	 * 
 	 * 		

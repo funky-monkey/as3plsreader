@@ -4,8 +4,8 @@ package nl.funkymonkey.utils.io.playlist.events
 	 * ParseEvent -- event class
 	 * 
 	 * @description -- When dispatched contains the extension of the succesfully parsed file aswell as the data in File Objects 
-	 * 	 * @author sidneydekoning	 */	public class ParseEvent extends Event {
-		public static const BEGIN_FILE_PARSE:String = "ParseEvent.BEGIN_FILE_PARSE";		public static const FILE_PARSED:String = "ParseEvent.FILE_PARSED";
+	 * 	 * @author Sidney de Koning, sidney@funky-monkey.nl	 */	public class ParseEvent extends Event {
+		public static const BEGIN_FILE_PARSE:String 	= "ParseEvent.BEGIN_FILE_PARSE";		public static const FILE_PARSED:String 		= "ParseEvent.FILE_PARSED";
 		private var _extension:String;
 		private var _parsedFiles:Array;
 
