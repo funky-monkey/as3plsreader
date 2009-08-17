@@ -17,7 +17,7 @@
 			switch (evt.level) 
 			{
 				case "status":
-					trace( "Firelog status : up & running" );
+//					trace( "Firelog status : up & running" );
 					break;
 				case "error":
 					trace( "Could not send command over LocalConnection" );
@@ -43,6 +43,7 @@
 			}
 			if(_isLogging) {
 				LOCAL_CONNECTION.send( LOCAL_CONNECTION_NAME , OUTPUT_METHOD , pInput.toString( ) , level );
+				trace(pInput.toString( ));
 			}
 		}
 
@@ -67,7 +68,7 @@
 		}
 
 		
-		public static function info(pInput:*):void {
+		public static function info(pInput:*, ...rest):void {
 			send( pInput , FilterLevel.INFO );
 		}
 
