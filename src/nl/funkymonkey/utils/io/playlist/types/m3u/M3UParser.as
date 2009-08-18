@@ -36,7 +36,7 @@ package nl.funkymonkey.utils.io.playlist.types.m3u {
 	public class M3UParser {
 
 		private static var EMPTY_MARKER : String 	= "";
-		private static var EXT_INFO_MARKER : String 	= "#EXTINF:";
+		private static var EXT_INFO_MARKER : String = "#EXTINF:";
 		//
 		private static var _parsedFile : Array;
 
