@@ -1,5 +1,5 @@
-package nl.funkymonkey.utils.io.playlist.types.m3u {
-	import nl.funkymonkey.utils.io.playlist.types.IPlayable;
+package nl.funkymonkey.io.playlist.types.m3u {
+	import nl.funkymonkey.io.playlist.types.IPlayable;
 
 	/**
 	 * 

@@ -1,10 +1,10 @@
-package nl.funkymonkey.utils.io.playlist.types.m3u {
-	import flash.utils.getTimer;
-
+package nl.funkymonkey.io.playlist.types.m3u {
 	import nl.funkymonkey.firelog.core.Logger;
-	import nl.funkymonkey.utils.io.playlist.error.ParseError;
-	import nl.funkymonkey.utils.io.playlist.types.FileExtensions;
-	import nl.funkymonkey.utils.io.playlist.types.FileHeader;
+	import nl.funkymonkey.io.playlist.error.ParseError;
+	import nl.funkymonkey.io.playlist.types.FileExtensions;
+	import nl.funkymonkey.io.playlist.types.FileHeader;
+
+	import flash.utils.getTimer;
 
 	/**
 	 * M3UParser -- Parses a M3U file

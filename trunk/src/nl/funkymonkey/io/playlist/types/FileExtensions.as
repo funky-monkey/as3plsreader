@@ -1,5 +1,5 @@
-package nl.funkymonkey.utils.io.playlist.types 
-{
+package nl.funkymonkey.io.playlist.types {
+
 	/**
 	 * FileExtensions -- Constants for file extensions
 	 * 
