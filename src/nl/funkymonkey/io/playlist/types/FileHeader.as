@@ -1,5 +1,5 @@
-package nl.funkymonkey.utils.io.playlist.types 
-{	/**
+package nl.funkymonkey.io.playlist.types {
+	/**
 	 * FileHeader -- Constants
 	 * 
 	 * @description: Constants to check file headers for parsing

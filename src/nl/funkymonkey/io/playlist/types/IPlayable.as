@@ -1,4 +1,4 @@
-package nl.funkymonkey.utils.io.playlist.types {
+package nl.funkymonkey.io.playlist.types {
 
 	/**
 	 * 

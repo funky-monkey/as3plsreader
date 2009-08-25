@@ -1,9 +1,8 @@
-package nl.funkymonkey.utils.io.playlist {
-	
+package nl.funkymonkey.io.playlist {
 	import nl.funkymonkey.firelog.core.Logger;
-	import nl.funkymonkey.utils.io.playlist.events.ParseEvent;
-	import nl.funkymonkey.utils.io.playlist.types.m3u.M3UParser;
-	import nl.funkymonkey.utils.io.playlist.types.pls.PLSParser;
+	import nl.funkymonkey.io.playlist.events.ParseEvent;
+	import nl.funkymonkey.io.playlist.types.m3u.M3UParser;
+	import nl.funkymonkey.io.playlist.types.pls.PLSParser;
 	//
 	import flash.filesystem.File;
 	import flash.filesystem.FileMode;

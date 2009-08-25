@@ -1,5 +1,4 @@
-package nl.funkymonkey.utils.io.playlist.events 
-{	import flash.events.Event;	
+package nl.funkymonkey.io.playlist.events {	import flash.events.Event;	
 	/**
 	 * ParseEvent -- event class
 	 * 

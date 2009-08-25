@@ -1,7 +1,7 @@
-package nl.funkymonkey.utils.io.playlist.types.pls {
-	import nl.funkymonkey.utils.io.playlist.error.ParseError;
-	import nl.funkymonkey.utils.io.playlist.types.FileExtensions;
-	import nl.funkymonkey.utils.io.playlist.types.FileHeader;
+package nl.funkymonkey.io.playlist.types.pls {
+	import nl.funkymonkey.io.playlist.error.ParseError;
+	import nl.funkymonkey.io.playlist.types.FileExtensions;
+	import nl.funkymonkey.io.playlist.types.FileHeader;
 
 	/**
 	 * PLSParser -- Parses a PLS file
