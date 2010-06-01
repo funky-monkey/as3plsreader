@@ -41,14 +41,16 @@ package nl.funkymonkey.io.playlist {
 
 		
 		//
-		function PlaylistReader( ) {			
+		function PlaylistReader( ) {
+			trace(this.toString() + " - " + VERSION + " - " + AUTHOR);
 		}
 
 		/**
 		 * @method source
 		 * @description sets a File object to be parsed
 		 * @param value:* - the location of the File object
-		 */		public function set source( value : File ) : void {
+		 */
+		public function set source( value : File ) : void {
 			_file = value;
 			
 			switch(extension.toUpperCase( )) {
@@ -79,7 +81,7 @@ package nl.funkymonkey.io.playlist {
 		}
 
 		private function handleFileReadComplete(evt : Event) : void {
-			Logger.info( "Binary file loaded --> ASYNC" );
+			trace( "Binary file loaded --> ASYNC" );
 
 			doFileParse( );
 		}
@@ -104,7 +106,7 @@ package nl.funkymonkey.io.playlist {
 					break;
 			}
 			
-			Logger.info( "File parsed, now dispatch a ParseEvent.FILE_PARSED" );
+			trace( "File parsed, now dispatch a ParseEvent.FILE_PARSED" );
 			dispatchEvent( new ParseEvent( ParseEvent.FILE_PARSED, fileObj, extension ) );
 		}
 
@@ -113,7 +115,7 @@ package nl.funkymonkey.io.playlist {
 
 		private function handleProgress(evt : ProgressEvent) : void {
 			
-			Logger.info( _fileStream.position + " :: " + _fileStream.bytesAvailable );
+			trace( _fileStream.position + " :: " + _fileStream.bytesAvailable );
 		}
 
 		private function handleIOError(ioError : IOErrorEvent) : void {
@@ -126,21 +128,24 @@ package nl.funkymonkey.io.playlist {
 		/**
 		 * @method extension
 		 * @description returns the extension of the File object
-		 */		public function get extension() : String {
+		 */
+		public function get extension() : String {
 			return _file.extension;			
 		}
 
 		/**
 		 * @method version
 		 * @description returns the current version
-		 */		public function get version() : String {
+		 */
+		public function get version() : String {
 			return VERSION;
 		}
 
 		/**
 		 * @method author
 		 * @description returns the author
-		 */		public function get author() : String {
+		 */
+		public function get author() : String {
 			return AUTHOR;
 		}
 
