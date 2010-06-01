@@ -88,7 +88,7 @@ package nl.funkymonkey.io.playlist.types.m3u {
 				throw new ParseError("Specified file is not a M3U file, make sure you pass through the correct file");
 			}
 			var endDuration:uint = getTimer();
-			Logger.info("Parse Time: " + uint(endDuration - beginDuration) / 1000  + " seconds.");
+			trace("Parse Time: " + uint(endDuration - beginDuration) / 1000  + " seconds.");
 			
 			return _parsedFile;
 		}
