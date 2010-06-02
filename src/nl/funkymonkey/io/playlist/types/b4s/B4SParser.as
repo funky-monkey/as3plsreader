@@ -26,6 +26,6 @@ package nl.funkymonkey.io.playlist.types.b4s {
 			{
 				throw new ParseError( "Specified file is not a B4S file, make sure you pass through the correct file" );
 			}
-		}
+		}asdded
 	}
 }
